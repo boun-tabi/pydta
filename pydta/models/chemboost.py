@@ -94,7 +94,7 @@ class ChemBoost(BaseDTAModel):
         self_sw_score = self.self_sw_scores.get(seq, None)
         if self_sw_score is not None:
             return self_sw_score
-        self_sw_score = align.localdx(seq, seq, substitution_matrices.load("blosum62"))[
+        self_sw_score = align.localdx(seq, seq, substitution_matrices.load("BLOSUM62"))[
             0
         ].score
         self.self_sw_scores[seq] = sqrt(self_sw_score)
@@ -104,7 +104,7 @@ class ChemBoost(BaseDTAModel):
         sw_score = self.sw_scores.get((seq1, seq2), None)
         if sw_score is not None:
             return sw_score
-        sw_score = align.localdx(seq1, seq2, substitution_matrices.load("blosum62"))[
+        sw_score = align.localdx(seq1, seq2, substitution_matrices.load("BLOSUM62"))[
             0
         ].score
         sw_score = (
