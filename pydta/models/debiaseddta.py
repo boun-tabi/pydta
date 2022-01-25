@@ -124,9 +124,10 @@ class DebiasedDTA:
         #     weights_by_epoch = create_uniform_weights(len(b), n_epochs)
 
         if val_chemicals is not None and val_proteins is not None and val_labels is not None:
-            return self.predictor_instance.train(train_chemicals, train_proteins, train_labels,
+            self.predictor_instance.train(train_chemicals, train_proteins, train_labels,
                                                  val_chemicals=val_chemicals, val_proteins=val_proteins, val_labels=val_labels,
                                                  sample_weights_by_epoch=weights_by_epoch)
-
-        return self.predictor_instance.train(train_chemicals, train_proteins, train_labels,
+        else:
+            self.predictor_instance.train(train_chemicals, train_proteins, train_labels,
                                              sample_weights_by_epoch=weights_by_epoch)
+        return self.predictor_instance 
